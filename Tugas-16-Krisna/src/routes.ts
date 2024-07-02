@@ -27,6 +27,13 @@ router.delete("/categories/:id", categoriesController.delete);
 router.post("/upload", uploadMiddleware.single, uploadController.single);
 router.post("/uploads", uploadMiddleware.multiple, uploadController.multiple);
 
+router.get("/", (req, res) => {
+  res.status(200).json({
+    message:"server is running...",
+    data:"ok",
+  });
+});
+
 router.get(
   "/auth/me",
   [authMiddleware, aclMiddlware(["admin"])],
